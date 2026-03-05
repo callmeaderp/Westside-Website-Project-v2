@@ -22,11 +22,15 @@ images/
   leaf-green.svg           Vector-traced Westside leaf (green, for favicon)
   leaf-white.svg           Vector-traced Westside leaf (white, for header/footer logos)
   placeholder-*.svg        26 aesthetic placeholder SVGs for all photo positions
+screenshots/               Dev screenshots from build process (~40 PNGs)
+AUDIT-REPORT.md            Full site audit: Lighthouse, accessibility, links, assets, visual
 WEBSITE-REFERENCE.md       Comprehensive reference doc — READ THIS for full details
 ```
 
 ### Gotchas
 - **Header/footer are duplicated** in all 6 HTML files. When changing nav links, logo, or footer — update all 6.
+- **Footer column headings use `<p class="footer-heading">`**, not `<h4>`. CSS selector is `.footer-col .footer-heading`. Changed from `<h4>` to fix heading hierarchy (was skipping H3).
+- **Each page has `class="active"`** on its nav link. CSS: `.main-nav > a.active` and `.nav-dropdown > a.active` for white text + green underline.
 - **Logo uses leaf SVG + Merriweather Bold serif font** (matching original Westside logo). The leaf was vector-traced from `../Westside/reference/assets/leaf.png` via potrace.
 - **Three Google Fonts loaded:** Anton (headings), Merriweather (logo), Source Sans 3 (body).
 - **All images are local SVG placeholders** in `images/`. They use `background-image: url('images/placeholder-*.svg')` in inline `style` attributes.
