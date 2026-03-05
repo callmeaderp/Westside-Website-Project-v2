@@ -309,6 +309,11 @@ section {
   width: 100%;
 }
 
+.main-nav > a.active,
+.nav-dropdown > a.active {
+  color: var(--text-white);
+}
+
 /* Dropdown */
 .nav-dropdown {
   position: relative;
@@ -792,7 +797,7 @@ section {
   color: var(--text-white);
 }
 
-.footer-col h4 {
+.footer-col .footer-heading {
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 700;
