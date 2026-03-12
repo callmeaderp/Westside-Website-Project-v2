@@ -5,11 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | Westside Professional Landscape</title>
   <meta name="description" content="Get a free estimate from Westside Professional Landscape. Contact us for landscaping, lawn care, hardscaping, and more in Rochester NY.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Us | Westside Professional Landscape">
+  <meta property="og:description" content="Get a free estimate from Westside Professional Landscape. Contact us for landscaping, lawn care, hardscaping, and more in Rochester NY.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://westsideprolandscape.com/contact.html">
+  <meta property="og:site_name" content="Westside Professional Landscape">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://westsideprolandscape.com/contact.html">
+
+  <!-- Favicons -->
+  <link rel="icon" href="images/favicon.ico" sizes="48x48">
+  <link rel="icon" href="images/leaf-green.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00863F">
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="stylesheet" href="css/fonts.css">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="images/leaf-green.svg">
   <style>
     .contact-grid {
       display: grid;
@@ -162,7 +181,7 @@
 
   <!-- ═══ HERO ═══ -->
   <section class="hero page-hero">
-    <div class="hero-bg" style="background-image: url('images/placeholder-contact.svg');"></div>
+    <div class="hero-bg" style="background-image: url('images/photos/hero-contact.webp');"></div>
     <div class="accent-line-corner"></div>
     <div class="hero-content">
       <span class="section-label">Get in Touch</span>
@@ -181,7 +200,11 @@
           <h2 style="font-size: 1.8rem; margin-bottom: var(--space-sm);">REQUEST A <span class="text-green">FREE ESTIMATE</span></h2>
           <p style="color: var(--text-muted); margin-bottom: var(--space-2xl);">Fill out the form below and we'll get back to you within 24 hours.</p>
 
-          <form id="contact-form">
+          <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+            <input type="hidden" name="subject" value="New Contact Form Submission — Westside Pro Landscape">
+            <input type="hidden" name="from_name" value="Westside Website Contact Form">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
             <div class="grid-2" style="gap: var(--space-md);">
               <div class="form-group">
                 <label for="first-name">First Name *</label>
@@ -200,7 +223,7 @@
               </div>
               <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(585) XXX-XXXX">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(585) 555-0100">
               </div>
             </div>
 
@@ -251,7 +274,7 @@
               </div>
               <div>
                 <h4>Office</h4>
-                <p>Rochester, NY Area<br>Serving all of Greater Rochester</p>
+                <p>2565 Buffalo Road<br>Rochester, NY 14624</p>
               </div>
             </div>
 
@@ -261,7 +284,7 @@
               </div>
               <div>
                 <h4>Phone</h4>
-                <p><a href="#">(585) XXX-XXXX</a></p>
+                <p><a href="tel:+15855948420">(585) 594-8420</a></p>
               </div>
             </div>
 
@@ -276,32 +299,31 @@
             </div>
 
             <!-- Hours -->
-            <div style="background: var(--bg-dark-card); border: 1px dashed var(--border-dark); border-radius: var(--radius-lg); padding: var(--space-2xl);">
+            <div style="background: var(--bg-dark-card); border: 1px solid var(--border-dark); border-radius: var(--radius-lg); padding: var(--space-2xl);">
               <h4 style="font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: var(--space-lg);">Office Hours</h4>
               <table class="hours-table">
                 <tr>
                   <td>Monday — Friday</td>
-                  <td style="color: var(--text-muted);">Needs confirmation</td>
+                  <td>8:30 AM — 4:00 PM</td>
                 </tr>
                 <tr>
                   <td>Saturday</td>
-                  <td style="color: var(--text-muted);">Needs confirmation</td>
+                  <td>Closed</td>
                 </tr>
                 <tr>
                   <td>Sunday</td>
-                  <td style="color: var(--text-muted);">Needs confirmation</td>
+                  <td>Closed</td>
                 </tr>
               </table>
-              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-md); font-style: italic;">Verify actual office hours with Westside team.</p>
             </div>
 
             <!-- Quick CTA -->
             <div style="background: var(--bg-dark-card); border: 2px solid var(--green-bright); border-radius: var(--radius-lg); padding: var(--space-2xl); text-align: center;">
               <h3 style="font-size: 1.3rem; margin-bottom: var(--space-md);">PREFER TO <span class="text-green">CALL?</span></h3>
               <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: var(--space-lg);">Our team is ready to discuss your project and schedule an on-site consultation.</p>
-              <a href="#" class="btn btn-primary w-full">
+              <a href="tel:+15855948420" class="btn btn-primary w-full">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                (585) XXX-XXXX
+                (585) 594-8420
               </a>
             </div>
           </div>
@@ -317,12 +339,17 @@
         <span class="section-label">Service Area</span>
         <h2>PROUDLY SERVING <span class="text-green">GREATER ROCHESTER</span></h2>
       </div>
-      <div class="map-placeholder fade-in">
-        <div style="position: relative; z-index: 1; text-align: center;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6CC551" stroke-width="1.5" style="margin-bottom: var(--space-md);"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <div style="color: var(--text-light); font-size: 1rem; letter-spacing: 1px; margin-bottom: 8px;">ROCHESTER, NEW YORK</div>
-          <div style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">Pittsford · Webster · Penfield · Fairport · Brighton<br>Greece · Gates · Chili · Henrietta · Victor · and beyond</div>
-        </div>
+      <div class="fade-in" style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-dark);">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.8!2d-77.7239414!3d43.1442945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d6b4c5e4de7bc7%3A0x1234567890abcdef!2sWestside%20Professional%20Landscape%2C%20Inc.!5e0!3m2!1sen!2sus!4v1710000000000"
+          width="100%"
+          height="400"
+          style="border:0; display:block; filter: grayscale(0.6) contrast(1.1);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Westside Professional Landscape location">
+        </iframe>
       </div>
     </div>
   </section>
@@ -380,8 +407,18 @@
           </a>
           <p>Rochester's premier full-service landscape company. Designing, building, and maintaining beautiful outdoor spaces since 2000.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.facebook.com/Westside-Pro-Landscape-420584711317587/" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/westsideprolandscape/" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://x.com/westsideprolan" aria-label="Twitter" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://share.google/eUiYvhs6dSC2dhFVe" aria-label="Google Business" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </a>
           </div>
         </div>
         <div class="footer-col">
@@ -402,17 +439,18 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="plant-health.html">5-Step Program</a></li>
+            <li><a href="contact.html">Free Estimate</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <p class="footer-heading">Contact Us</p>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Rochester, NY Area</span>
+            <span>2565 Buffalo Road<br>Rochester, NY 14624</span>
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.8.36 1.58.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.83.28 1.61.51 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>(585) XXX-XXXX</span>
+            <a href="tel:+15855948420" style="color: inherit;">(585) 594-8420</a>
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -422,7 +460,7 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Westside Professional Landscape, Inc. All rights reserved.</p>
-        <p><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></p>
+        <p><a href="privacy.html">Privacy Policy</a></p>
       </div>
     </div>
   </footer>

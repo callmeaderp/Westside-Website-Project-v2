@@ -5,11 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us | Westside Professional Landscape</title>
   <meta name="description" content="Learn about Westside Professional Landscape — serving Rochester NY since 2000. Full-service landscaping, certified applicators, Top 100 company.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:wght@700&family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Us | Westside Professional Landscape">
+  <meta property="og:description" content="Learn about Westside Professional Landscape — serving Rochester NY since 2000. Full-service landscaping, certified applicators, Top 100 company.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://westsideprolandscape.com/about.html">
+  <meta property="og:site_name" content="Westside Professional Landscape">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://westsideprolandscape.com/about.html">
+
+  <!-- Favicons -->
+  <link rel="icon" href="images/favicon.ico" sizes="48x48">
+  <link rel="icon" href="images/leaf-green.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00863F">
+
+  <!-- Fonts (self-hosted) -->
+  <link rel="stylesheet" href="css/fonts.css">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="images/leaf-green.svg">
   <style>
     .timeline {
       position: relative;
@@ -164,7 +183,7 @@
 
   <!-- ═══ HERO ═══ -->
   <section class="hero page-hero">
-    <div class="hero-bg" style="background-image: url('images/placeholder-about.svg');"></div>
+    <div class="hero-bg" style="background-image: url('images/photos/hero-about.webp');"></div>
     <div class="accent-line-corner"></div>
     <div class="hero-content">
       <span class="section-label">Our Story</span>
@@ -201,19 +220,15 @@
       <div class="stats-bar fade-in">
         <div class="stat-item">
           <div class="stat-number" data-count="26" data-suffix="+">0+</div>
-          <div class="stat-label">Years in Business</div>
+          <div class="stat-label">Years Experience</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" style="color: var(--text-muted);">---</div>
-          <div class="stat-label">Projects Completed</div>
+          <div class="stat-number" data-count="76" data-suffix="+">0+</div>
+          <div class="stat-label">Active Clients</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" style="color: var(--text-muted);">---</div>
-          <div class="stat-label">Happy Clients</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" style="color: var(--text-muted);">---</div>
-          <div class="stat-label">Team Members</div>
+          <div class="stat-number">DEC</div>
+          <div class="stat-label">NYS Certified Applicator</div>
         </div>
       </div>
     </div>
@@ -235,24 +250,9 @@
             <div class="timeline-desc">Westside Professional Landscape is established, serving residential clients in the western Rochester suburbs with landscape design, installation, and maintenance.</div>
           </div>
           <div class="timeline-item">
-            <div class="timeline-year">2005</div>
-            <div class="timeline-title">Expanded to Commercial Services</div>
-            <div class="timeline-desc">Growing demand from HOAs and commercial properties leads to expansion of services including large-scale maintenance contracts and snow management.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2010</div>
-            <div class="timeline-title">Hardscaping Division Launched</div>
-            <div class="timeline-desc">Addition of dedicated hardscaping crews enables full-service outdoor living projects — patios, walls, walkways, and water features.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-year">2018</div>
-            <div class="timeline-title">Holiday Decorating Services</div>
-            <div class="timeline-desc">Launch of professional holiday decorating division, providing design, installation, and removal of custom holiday lighting and displays.</div>
-          </div>
-          <div class="timeline-item">
             <div class="timeline-year">2023</div>
             <div class="timeline-title">Top 100 Recognition</div>
-            <div class="timeline-desc">Recognized among the industry's Top 100 landscape companies — a testament to our team's dedication to quality and growth.</div>
+            <div class="timeline-desc">Named to the Greater Rochester Chamber of Commerce Top 100 Fastest Growing Companies — a testament to our team's dedication to quality and growth.</div>
           </div>
           <div class="timeline-item">
             <div class="timeline-year">2026</div>
@@ -330,7 +330,7 @@
         <div style="padding: var(--space-2xl);">
           <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#E8C84A" stroke-width="1.5" style="margin-bottom: var(--space-lg);"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <h3 style="margin-bottom: var(--space-sm);">TOP 100 COMPANY</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Recognized among the landscape industry's Top 100 companies for quality, growth, and service excellence.</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Named to the Greater Rochester Chamber of Commerce Top 100 Fastest Growing Companies for quality, growth, and service excellence.</p>
         </div>
 
         <div style="padding: var(--space-2xl);">
@@ -423,8 +423,18 @@
           </a>
           <p>Rochester's premier full-service landscape company. Designing, building, and maintaining beautiful outdoor spaces since 2000.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.facebook.com/Westside-Pro-Landscape-420584711317587/" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/westsideprolandscape/" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://x.com/westsideprolan" aria-label="Twitter" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://share.google/eUiYvhs6dSC2dhFVe" aria-label="Google Business" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </a>
           </div>
         </div>
         <div class="footer-col">
@@ -445,17 +455,18 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="plant-health.html">5-Step Program</a></li>
+            <li><a href="contact.html">Free Estimate</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <p class="footer-heading">Contact Us</p>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Rochester, NY Area</span>
+            <span>2565 Buffalo Road<br>Rochester, NY 14624</span>
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.8.36 1.58.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.83.28 1.61.51 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>(585) XXX-XXXX</span>
+            <a href="tel:+15855948420" style="color: inherit;">(585) 594-8420</a>
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -465,7 +476,7 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Westside Professional Landscape, Inc. All rights reserved.</p>
-        <p><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a></p>
+        <p><a href="privacy.html">Privacy Policy</a></p>
       </div>
     </div>
   </footer>

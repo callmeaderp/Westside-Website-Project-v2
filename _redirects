@@ -1,0 +1,46 @@
+# Cloudflare Pages redirects — map old WordPress URLs to new site
+# Format: /old-path /new-path [status-code]
+
+# WordPress page slugs → new pages
+/landscaping-services/    /services.html    301
+/landscape-services/      /services.html    301
+/services/                /services.html    301
+/about-us/                /about.html       301
+/about/                   /about.html       301
+/contact-us/              /contact.html     301
+/contact/                 /contact.html     301
+/portfolio/               /gallery.html     301
+/gallery/                 /gallery.html     301
+/our-work/                /gallery.html     301
+
+# Service-specific pages
+/plant-health/            /plant-health.html 301
+/plant-health-care/       /plant-health.html 301
+/lawn-care/               /plant-health.html 301
+/lawn-care-program/       /plant-health.html 301
+/hardscaping/             /services.html#hardscape 301
+/hardscape/               /services.html#hardscape 301
+/landscape-design/        /services.html#landscape-design 301
+/holiday-lighting/        /services.html#holiday-lighting 301
+/holiday-lights/          /services.html#holiday-lighting 301
+/snow-removal/            /services.html#snow-ice 301
+/snow-ice-management/     /services.html#snow-ice 301
+/artificial-turf/         /services.html#artificial-turf 301
+/synlawn/                 /services.html#artificial-turf 301
+
+# WordPress artifacts
+/wp-admin/*               /       301
+/wp-login.php             /       301
+/wp-content/*             /       301
+/feed/                    /       301
+/xmlrpc.php               /       301
+
+# Blog → homepage (blog was AI-generated filler, being removed)
+/blog/                    /       301
+/blog/*                   /       301
+/category/*               /       301
+/tag/*                    /       301
+
+# Common typos / alternate paths
+/index.php                /       301
+/home/                    /       301
