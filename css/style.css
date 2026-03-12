@@ -1111,7 +1111,7 @@ select.form-control {
 .mt-1 { margin-top: var(--space-md); }
 .mt-2 { margin-top: var(--space-xl); }
 .mt-3 { margin-top: var(--space-2xl); }
-.mb-1 { margin-top: var(--space-md); }
+.mb-1 { margin-bottom: var(--space-md); }
 .mb-2 { margin-bottom: var(--space-xl); }
 .mb-3 { margin-bottom: var(--space-2xl); }
 .gap-sm { gap: var(--space-sm); }

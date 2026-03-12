@@ -26,11 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── Mobile Dropdown Toggle ───
+  // First tap opens dropdown, second tap navigates to the page
   document.querySelectorAll('.nav-dropdown > a').forEach(toggle => {
     toggle.addEventListener('click', (e) => {
       if (window.innerWidth <= 768) {
-        e.preventDefault();
-        toggle.parentElement.classList.toggle('open');
+        const parent = toggle.parentElement;
+        if (!parent.classList.contains('open')) {
+          e.preventDefault();
+          parent.classList.add('open');
+        }
+        // If already open, allow normal navigation to services.html
       }
     });
   });
