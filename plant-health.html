@@ -31,6 +31,50 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://westsideprolandscape.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://westsideprolandscape.com/services.html"},
+      {"@type": "ListItem", "position": 3, "name": "Plant Health & Lawn Care", "item": "https://westsideprolandscape.com/plant-health.html"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "5-Step Lawn Care Program",
+    "description": "Comprehensive 5-step seasonal lawn care program including fertilization, weed control, crabgrass prevention, and free grub control. NYS DEC Certified Applicators.",
+    "provider": {
+      "@type": "LandscapingBusiness",
+      "@id": "https://westsideprolandscape.com/#business"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Rochester",
+      "containedInPlace": {"@type": "State", "name": "New York"}
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "580",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "580",
+        "priceCurrency": "USD",
+        "unitText": "season",
+        "description": "Starting price based on standard-size lawns"
+      },
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
   <style>
     .program-step {
       display: grid;
@@ -192,19 +236,20 @@
         <div class="nav-dropdown">
           <a href="services.html">Services</a>
           <div class="dropdown-menu">
-            <a href="services.html#landscape-design">Landscape Design</a>
-            <a href="services.html#maintenance">Maintenance</a>
+            <a href="landscape-design.html">Landscape Design</a>
+            <a href="landscape-maintenance.html">Maintenance</a>
             <a href="plant-health.html" class="active">Plant Health & Lawn Care</a>
-            <a href="services.html#hardscaping">Hardscaping</a>
-            <a href="services.html#water-features">Water Features</a>
-            <a href="services.html#snow-removal">Snow & Ice Management</a>
-            <a href="services.html#holiday-decor">Holiday Decorating</a>
+            <a href="hardscaping.html">Hardscaping</a>
+            <a href="water-features.html">Water Features</a>
+            <a href="snow-ice-management.html">Snow & Ice Management</a>
+            <a href="holiday-lighting.html">Holiday Decorating</a>
           </div>
         </div>
         <a href="about.html">About</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
       </nav>
+      <a href="https://www.synlawn.com" class="partner-logo" target="_blank" rel="noopener" aria-label="Authorized SYNLawn Dealer"><img src="images/synlawn-logo.svg" alt="SYNLawn" width="120" height="23"></a>
       <div class="header-cta">
         <a href="contact.html" class="btn btn-primary btn-sm">Get a Free Estimate</a>
       </div>
@@ -218,7 +263,7 @@
 
   <!-- ═══ HERO ═══ -->
   <section class="hero page-hero">
-    <div class="hero-bg" style="background-image: url('images/photos/hero-plant-health.webp'); background-position: center 60%;"></div>
+    <div class="hero-bg"><img src="images/photos/hero-plant-health.webp" alt="Lush green lawn from Westside's 5-step lawn care program in Rochester NY" width="1920" height="1080" fetchpriority="high" decoding="async" style="object-position: center 60%;"></div>
     <div class="accent-line-corner"></div>
     <div class="accent-line-h"></div>
     <div class="hero-content">
@@ -484,7 +529,7 @@
   <section class="section-dark">
     <div class="container">
       <div class="chess-block fade-in" style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-dark);">
-        <div class="chess-image" style="background-image: url('images/photos/lawn-lush-backyard.webp');"></div>
+        <div class="chess-image"><img src="images/photos/lawn-lush-backyard.webp" alt="Lush backyard lawn treated by Westside Professional Landscape" width="1200" height="800" loading="lazy" decoding="async"></div>
         <div class="chess-content" style="background: var(--bg-dark-card);">
           <span class="section-label">Why Westside</span>
           <h2>PROFESSIONAL-GRADE <span class="text-green">RESULTS</span></h2>
@@ -564,12 +609,12 @@
         <div class="footer-col">
           <p class="footer-heading">Services</p>
           <ul>
-            <li><a href="services.html#landscape-design">Landscape Design</a></li>
-            <li><a href="services.html#maintenance">Maintenance</a></li>
+            <li><a href="landscape-design.html">Landscape Design</a></li>
+            <li><a href="landscape-maintenance.html">Maintenance</a></li>
             <li><a href="plant-health.html">Lawn Care</a></li>
-            <li><a href="services.html#hardscaping">Hardscaping</a></li>
-            <li><a href="services.html#water-features">Water Features</a></li>
-            <li><a href="services.html#snow-removal">Snow Removal</a></li>
+            <li><a href="hardscaping.html">Hardscaping</a></li>
+            <li><a href="water-features.html">Water Features</a></li>
+            <li><a href="snow-ice-management.html">Snow Removal</a></li>
           </ul>
         </div>
         <div class="footer-col">

@@ -2,6 +2,9 @@
    Westside Professional Landscape — Main JavaScript
    ═══════════════════════════════════════════════════════════════════ */
 
+// Add .js class for progressive enhancement (fade-in fallback)
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Mobile Menu Toggle ───
@@ -134,6 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (caption) {
           lightboxCaption.textContent = caption.textContent;
+          lightboxImg.alt = caption.textContent;
+        } else {
+          lightboxImg.alt = '';
         }
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';

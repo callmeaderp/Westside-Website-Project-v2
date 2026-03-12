@@ -36,9 +36,15 @@
   {
     "@context": "https://schema.org",
     "@type": "LandscapingBusiness",
+    "@id": "https://westsideprolandscape.com/#business",
     "name": "Westside Professional Landscape",
     "url": "https://westsideprolandscape.com",
     "telephone": "+1-585-594-8420",
+    "email": "info@westsideprolandscape.com",
+    "description": "Professional landscaping, lawn care, hardscaping, and outdoor living services in Rochester, NY. NYS DEC certified, serving Greater Rochester since 2000.",
+    "logo": "https://westsideprolandscape.com/images/leaf-green.svg",
+    "image": "https://westsideprolandscape.com/images/photos/hero-home.webp",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "2565 Buffalo Road",
@@ -61,10 +67,75 @@
       }
     ],
     "foundingDate": "2000",
-    "areaServed": {
-      "@type": "City",
-      "name": "Rochester",
-      "containedInPlace": { "@type": "State", "name": "New York" }
+    "areaServed": [
+      {"@type": "City", "name": "Rochester", "containedInPlace": {"@type": "State", "name": "New York"}},
+      {"@type": "City", "name": "Pittsford"},
+      {"@type": "City", "name": "Webster"},
+      {"@type": "City", "name": "Penfield"},
+      {"@type": "City", "name": "Fairport"},
+      {"@type": "City", "name": "Brighton"},
+      {"@type": "City", "name": "Greece"},
+      {"@type": "City", "name": "Gates"},
+      {"@type": "City", "name": "Chili"},
+      {"@type": "City", "name": "Henrietta"},
+      {"@type": "City", "name": "Victor"}
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "6",
+      "bestRating": "5"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "Mr. & Mrs. Previtt"},
+        "reviewBody": "Other landscapers end up doing the bare minimum, but not Westside Professional Landscape. They do a great job and they always make my home look nice."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "M. Sperandio"},
+        "reviewBody": "I have been using Westside for my office park's landscaping and snow removal needs for 5 years. Their work is top quality, done on-time and competitively priced."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "J. Wolford"},
+        "reviewBody": "Westside Pro is the place to go. They are 100% professional and stand behind their work. I never hesitate recommending Westside Pro to my friends and relatives."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "Mrs. M Woodings"},
+        "reviewBody": "I always use Westside Professional Landscape when it comes to renovating my home. I know the job is going to be handled with the utmost care."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "C. Simmons"},
+        "reviewBody": "I have been doing business with Westside Professional Landscape since 2004. I have found Westside Pro to be Competitive, Courteous, and Complete."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+        "author": {"@type": "Person", "name": "Mr. & Mrs. Smith"},
+        "reviewBody": "We are always pleased with the work done by Westside Professional. Their attention to detail and craftsmanship is above and beyond."
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Landscaping Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Landscape Design & Installation"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Landscape Maintenance"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Plant Health & Lawn Care"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hardscaping & Outdoor Living"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Water Features"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Snow & Ice Management"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Holiday Decorating"}}
+      ]
     },
     "sameAs": [
       "https://www.facebook.com/Westside-Pro-Landscape-420584711317587/",
@@ -92,13 +163,13 @@
         <div class="nav-dropdown">
           <a href="services.html">Services</a>
           <div class="dropdown-menu">
-            <a href="services.html#landscape-design">Landscape Design</a>
-            <a href="services.html#maintenance">Maintenance</a>
+            <a href="landscape-design.html">Landscape Design</a>
+            <a href="landscape-maintenance.html">Maintenance</a>
             <a href="plant-health.html">Plant Health & Lawn Care</a>
-            <a href="services.html#hardscaping">Hardscaping</a>
-            <a href="services.html#water-features">Water Features</a>
-            <a href="services.html#snow-removal">Snow & Ice Management</a>
-            <a href="services.html#holiday-decor">Holiday Decorating</a>
+            <a href="hardscaping.html">Hardscaping</a>
+            <a href="water-features.html">Water Features</a>
+            <a href="snow-ice-management.html">Snow & Ice Management</a>
+            <a href="holiday-lighting.html">Holiday Decorating</a>
           </div>
         </div>
         <a href="about.html">About</a>
@@ -106,6 +177,7 @@
         <a href="contact.html">Contact</a>
       </nav>
 
+      <a href="https://www.synlawn.com" class="partner-logo" target="_blank" rel="noopener" aria-label="Authorized SYNLawn Dealer"><img src="images/synlawn-logo.svg" alt="SYNLawn" width="120" height="23"></a>
       <div class="header-cta">
         <a href="contact.html" class="btn btn-primary btn-sm">Get a Free Estimate</a>
       </div>
@@ -122,12 +194,12 @@
 
   <!-- ═══ HERO ═══ -->
   <section class="hero">
-    <div class="hero-bg" style="background-image: url('images/photos/hero-home.webp'); background-position: center 40%;"></div>
+    <div class="hero-bg"><img src="images/photos/hero-home.webp" alt="Professional landscaping in Rochester NY — lush lawn with landscape lighting" width="1920" height="1080" fetchpriority="high" decoding="async" style="object-position: center 40%;"></div>
     <div class="accent-line-corner"></div>
     <div class="accent-line-h"></div>
     <div class="hero-content">
       <span class="section-label">Rochester's Premier Landscape Professionals</span>
-      <h1>YOUR LANDSCAPE,<br><span class="text-green">OUR EXPERTISE</span></h1>
+      <h1>ROCHESTER'S PROFESSIONAL <span class="text-green">LANDSCAPING EXPERTS</span></h1>
       <p>Full-service landscaping, lawn care, and property management. Transforming outdoor spaces across Greater Rochester since 2000.</p>
       <div class="hero-buttons">
         <a href="contact.html" class="btn btn-primary btn-lg">Get a Free Estimate</a>
@@ -147,8 +219,9 @@
 
       <div class="grid-3 mt-3 stagger-children">
         <!-- Service Card: Landscape Design -->
-        <a href="services.html#landscape-design" class="card">
-          <div class="card-image" style="aspect-ratio:16/10; background: url('images/photos/svc-landscape-design.webp') center/cover; position: relative;">
+        <a href="landscape-design.html" class="card">
+          <div class="card-image" style="aspect-ratio:16/10; position: relative; overflow: hidden;">
+            <img src="images/photos/svc-landscape-design.webp" alt="Landscape design services in Rochester NY" width="800" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
           </div>
           <div class="card-body">
@@ -160,7 +233,8 @@
 
         <!-- Service Card: Lawn Care -->
         <a href="plant-health.html" class="card">
-          <div class="card-image" style="aspect-ratio:16/10; background: url('images/photos/svc-plant-health.webp') center/cover; position: relative;">
+          <div class="card-image" style="aspect-ratio:16/10; position: relative; overflow: hidden;">
+            <img src="images/photos/svc-plant-health.webp" alt="Plant health and lawn care program in Rochester NY" width="800" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
           </div>
           <div class="card-body">
@@ -171,8 +245,9 @@
         </a>
 
         <!-- Service Card: Hardscaping -->
-        <a href="services.html#hardscaping" class="card">
-          <div class="card-image" style="aspect-ratio:16/10; background: url('images/photos/svc-hardscape.webp') center/cover; position: relative;">
+        <a href="hardscaping.html" class="card">
+          <div class="card-image" style="aspect-ratio:16/10; position: relative; overflow: hidden;">
+            <img src="images/photos/svc-hardscape.webp" alt="Hardscaping and patio construction in Rochester NY" width="800" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
           </div>
           <div class="card-body">
@@ -183,8 +258,9 @@
         </a>
 
         <!-- Service Card: Water Features -->
-        <a href="services.html#water-features" class="card">
-          <div class="card-image" style="aspect-ratio:16/10; background: url('images/photos/svc-water-features.webp') center/cover; position: relative;">
+        <a href="water-features.html" class="card">
+          <div class="card-image" style="aspect-ratio:16/10; position: relative; overflow: hidden;">
+            <img src="images/photos/svc-water-features.webp" alt="Custom water features and ponds in Rochester NY" width="800" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
           </div>
           <div class="card-body">
@@ -195,8 +271,9 @@
         </a>
 
         <!-- Service Card: Maintenance -->
-        <a href="services.html#maintenance" class="card">
-          <div class="card-image" style="aspect-ratio:16/10; background: url('images/photos/svc-maintenance.webp') center/cover; position: relative;">
+        <a href="landscape-maintenance.html" class="card">
+          <div class="card-image" style="aspect-ratio:16/10; position: relative; overflow: hidden;">
+            <img src="images/photos/svc-maintenance.webp" alt="Landscape maintenance and lawn mowing in Rochester NY" width="800" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
           </div>
           <div class="card-body">
@@ -207,8 +284,9 @@
         </a>
 
         <!-- Service Card: Snow Removal -->
-        <a href="services.html#snow-removal" class="card">
-          <div class="card-image" style="aspect-ratio:16/10; background: url('images/photos/svc-snow.webp') center/cover; position: relative;">
+        <a href="snow-ice-management.html" class="card">
+          <div class="card-image" style="aspect-ratio:16/10; position: relative; overflow: hidden;">
+            <img src="images/photos/svc-snow.webp" alt="Commercial snow and ice management in Rochester NY" width="800" height="500" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
           </div>
           <div class="card-body">
@@ -224,7 +302,7 @@
   <!-- ═══ 5-STEP PROGRAM HIGHLIGHT ═══ -->
   <section class="section-dark" style="padding-bottom: 0;">
     <div class="chess-block fade-in">
-      <div class="chess-image" style="background-image: url('images/photos/gallery-striped-colonial.webp'); background-position: center;"></div>
+      <div class="chess-image"><img src="images/photos/gallery-striped-colonial.webp" alt="Striped colonial lawn maintained by Westside Professional Landscape" width="1200" height="800" loading="lazy" decoding="async"></div>
       <div class="chess-content">
         <span class="section-label">Featured Program</span>
         <h2>THE 5-STEP <span class="text-green">LAWN CARE</span> PROGRAM</h2>
@@ -458,12 +536,12 @@
         <div class="footer-col">
           <p class="footer-heading">Services</p>
           <ul>
-            <li><a href="services.html#landscape-design">Landscape Design</a></li>
-            <li><a href="services.html#maintenance">Maintenance</a></li>
+            <li><a href="landscape-design.html">Landscape Design</a></li>
+            <li><a href="landscape-maintenance.html">Maintenance</a></li>
             <li><a href="plant-health.html">Lawn Care</a></li>
-            <li><a href="services.html#hardscaping">Hardscaping</a></li>
-            <li><a href="services.html#water-features">Water Features</a></li>
-            <li><a href="services.html#snow-removal">Snow Removal</a></li>
+            <li><a href="hardscaping.html">Hardscaping</a></li>
+            <li><a href="water-features.html">Water Features</a></li>
+            <li><a href="snow-ice-management.html">Snow Removal</a></li>
           </ul>
         </div>
 
