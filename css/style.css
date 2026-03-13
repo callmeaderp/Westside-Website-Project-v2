@@ -14,13 +14,16 @@
 
   /* Backgrounds */
   --bg-dark: #111111;
-  --bg-dark-alt: #161616;
+  --bg-dark-alt: #1a1a1a;
   --bg-dark-card: #1a1a1a;
   --bg-dark-elevated: #222222;
   --bg-overlay: rgba(0, 0, 0, 0.65);
   --bg-overlay-heavy: rgba(0, 0, 0, 0.78);
   --bg-white: #ffffff;
   --bg-light: #f8f9fa;
+  --bg-accent: #0f1f14;
+  --bg-accent-card: #152a1b;
+  --border-accent: #1f3d26;
 
   /* Text */
   --text-white: #ffffff;
@@ -188,19 +191,42 @@ section {
   background-color: var(--bg-dark-alt);
 }
 
+/* Accent section — dark forest green tint for visual relief without breaking dark theme.
+   Named .section-white for legacy compatibility; visually it's a green-tinted dark section. */
 .section-white {
-  background-color: var(--bg-white);
-  color: var(--text-dark);
+  background-color: var(--bg-accent);
+  color: var(--text-light);
 }
 
 .section-white h2,
 .section-white h3,
 .section-white h4 {
-  color: var(--text-dark);
+  color: var(--text-white);
 }
 
 .section-white .section-subtitle {
-  color: var(--text-body-dark);
+  color: var(--text-muted);
+}
+
+.section-white .stat-number { color: var(--green-bright); }
+.section-white .stat-label { color: var(--text-muted); }
+.section-white .card { background: var(--bg-accent-card); border-color: var(--border-accent); }
+.section-white .card-body h3 { color: var(--text-white); }
+.section-white .card-body p { color: var(--text-muted); }
+.section-white .text-green { color: var(--green-bright); }
+.section-white .divider { background: var(--green-gradient); }
+.section-white .badge-green { background: rgba(108, 197, 81, 0.12); color: var(--green-bright); }
+
+/* Section dividers between same-tone sections */
+.section-dark + .section-dark-alt,
+.section-dark-alt + .section-dark {
+  border-top: 1px solid var(--border-dark);
+}
+
+/* Accent sections get a green-tinted top border for definition */
+.section-white {
+  border-top: 1px solid var(--border-accent);
+  border-bottom: 1px solid var(--border-accent);
 }
 
 /* ═══ HEADER ═══ */
@@ -257,7 +283,7 @@ section {
 
 .logo-tagline {
   font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--green-bright);
@@ -386,7 +412,7 @@ section {
   background: none;
   border: none;
   cursor: pointer;
-  padding: var(--space-sm);
+  padding: 12px;
 }
 
 .menu-toggle span {
@@ -514,7 +540,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--bg-overlay-heavy);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.65) 50%, rgba(0, 0, 0, 0.45) 100%);
 }
 
 .hero-content {
@@ -590,6 +616,23 @@ section {
   padding: var(--space-4xl) var(--space-xl);
 }
 
+/* Utility/legal page hero (shorter) */
+.hero-utility {
+  min-height: 30vh;
+  padding-top: var(--header-height);
+}
+.hero-utility::before,
+.hero-utility .accent-line-h,
+.hero-utility .accent-line-corner {
+  display: none;
+}
+.hero-utility .hero-bg::after {
+  background: linear-gradient(135deg, rgba(0, 134, 63, 0.3) 0%, rgba(17, 17, 17, 0.95) 100%);
+}
+.hero-utility .hero-content p {
+  color: var(--text-light);
+}
+
 /* ═══ CARDS ═══ */
 .card {
   background: var(--bg-dark-card);
@@ -597,6 +640,8 @@ section {
   overflow: hidden;
   transition: all var(--transition-normal);
   border: 1px solid var(--border-dark);
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -606,14 +651,25 @@ section {
 }
 
 .card-image {
+  position: relative;
   width: 100%;
   aspect-ratio: 16/10;
   object-fit: cover;
   background: var(--bg-dark-elevated);
 }
 
+.card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
 .card-body {
   padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .card-body h3 {
@@ -636,7 +692,7 @@ section {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--green-bright);
-  margin-top: var(--space-md);
+  margin-top: auto;
 }
 
 .card-body .card-link:hover {
@@ -670,12 +726,11 @@ section {
   min-height: 500px;
 }
 
-.chess-block.reverse {
-  direction: rtl;
+.chess-block.reverse > *:first-child {
+  order: 2;
 }
-
-.chess-block.reverse > * {
-  direction: ltr;
+.chess-block.reverse > *:last-child {
+  order: 1;
 }
 
 .chess-image {
@@ -800,8 +855,8 @@ section {
 }
 
 .footer-social a {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--border-dark);
   display: flex;
@@ -817,7 +872,8 @@ section {
   color: var(--text-white);
 }
 
-.footer-col .footer-heading {
+.footer-col .footer-heading,
+.footer-col h4 {
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 700;
@@ -926,15 +982,15 @@ select.form-control {
   padding-right: 40px;
 }
 
-/* White section forms */
+/* Accent section forms */
 .section-white .form-control {
-  background: var(--bg-white);
-  border-color: var(--border-light);
-  color: var(--text-dark);
+  background: var(--bg-accent-card);
+  border-color: var(--border-accent);
+  color: var(--text-white);
 }
 
 .section-white .form-control:focus {
-  border-color: var(--green-primary);
+  border-color: var(--green-bright);
 }
 
 /* ═══ BADGES & TAGS ═══ */
@@ -1051,6 +1107,106 @@ select.form-control {
   }
 }
 
+/* ═══ CHECK LIST ═══ */
+.check-list li {
+  padding: 8px 0;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.check-list li::before {
+  content: '\2713';
+  color: var(--green-bright);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.check-list.check-list-top li {
+  align-items: flex-start;
+}
+.section-white .check-list li {
+  color: var(--text-light);
+}
+.section-white .check-list li::before {
+  color: var(--green-bright);
+}
+
+/* ═══ TESTIMONIAL CARDS ═══ */
+.testimonial-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.testimonial-card .testimonial-text {
+  font-style: italic;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  flex: 1;
+}
+.testimonial-card .testimonial-author {
+  font-weight: 700;
+  color: var(--text-white);
+}
+.testimonial-card .testimonial-role {
+  font-size: 0.85rem;
+  color: var(--green-bright);
+}
+.section-white .testimonial-card {
+  background: var(--bg-accent-card);
+  border-color: var(--border-accent);
+}
+.section-white .testimonial-card .testimonial-text {
+  color: var(--text-light);
+}
+.section-white .testimonial-card .testimonial-author {
+  color: var(--text-white);
+}
+
+/* ═══ TEAM CARDS ═══ */
+.team-card {
+  text-align: center;
+}
+.team-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-lg);
+  overflow: hidden;
+  border: 3px solid var(--green-bright);
+}
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.team-info h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: none;
+  margin-bottom: var(--space-xs);
+}
+.team-info .team-role {
+  font-size: 0.85rem;
+  color: var(--green-bright);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ═══ GALLERY TOUCH CAPTIONS ═══ */
+@media (hover: none) {
+  .gallery-overlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 65%);
+  }
+}
+
 /* ═══ IMG INSIDE HERO/CHESS CONTAINERS ═══ */
 .hero-bg img {
   width: 100%;
@@ -1068,6 +1224,7 @@ select.form-control {
 
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1024px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-2xl); }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }

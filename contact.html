@@ -193,12 +193,6 @@
       border-radius: var(--radius-lg);
       padding: var(--space-2xl);
     }
-    .page-hero {
-      min-height: 40vh;
-    }
-    .page-hero .hero-content {
-      padding: var(--space-2xl) var(--space-xl);
-    }
     @media (max-width: 768px) {
       .contact-grid {
         grid-template-columns: 1fr;
@@ -263,10 +257,10 @@
   <!-- ═══ CONTACT FORM & INFO ═══ -->
   <section class="section-dark-alt">
     <div class="container">
-      <div class="contact-grid fade-in">
+      <div class="contact-grid">
 
         <!-- Contact Form -->
-        <div class="form-card">
+        <div class="form-card fade-in">
           <h2 style="font-size: 1.8rem; margin-bottom: var(--space-sm);">REQUEST A <span class="text-green">FREE ESTIMATE</span></h2>
           <p style="color: var(--text-muted); margin-bottom: var(--space-2xl);">Fill out the form below and we'll get back to you within 1–2 business days.</p>
 
@@ -335,7 +329,7 @@
         </div>
 
         <!-- Contact Info Sidebar -->
-        <div>
+        <div class="fade-in">
           <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
 
             <div class="contact-info-card">
@@ -489,7 +483,7 @@
           </div>
         </div>
         <div class="footer-col">
-          <p class="footer-heading">Services</p>
+          <h4 class="footer-heading">Services</h4>
           <ul>
             <li><a href="landscape-design.html">Landscape Design</a></li>
             <li><a href="landscape-maintenance.html">Maintenance</a></li>
@@ -497,10 +491,11 @@
             <li><a href="hardscaping.html">Hardscaping</a></li>
             <li><a href="water-features.html">Water Features</a></li>
             <li><a href="snow-ice-management.html">Snow Removal</a></li>
+            <li><a href="holiday-lighting.html">Holiday Decorating</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <p class="footer-heading">Company</p>
+          <h4 class="footer-heading">Company</h4>
           <ul>
             <li><a href="about.html">About Us</a></li>
             <li><a href="gallery.html">Gallery</a></li>
@@ -511,7 +506,7 @@
           </ul>
         </div>
         <div class="footer-col">
-          <p class="footer-heading">Contact Us</p>
+          <h4 class="footer-heading">Contact Us</h4>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span>2565 Buffalo Road<br>Rochester, NY 14624</span>

@@ -69,11 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.1,
+      rootMargin: '0px 0px -20px 0px'
     });
 
     animatedElements.forEach(el => observer.observe(el));
+
+    // Catch elements already in viewport on page load (e.g. bottom-of-page CTAs)
+    requestAnimationFrame(() => {
+      animatedElements.forEach(el => {
+        if (!el.classList.contains('visible')) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('visible');
+            observer.unobserve(el);
+          }
+        }
+      });
+    });
   }
 
   // ─── Active Nav Link ───
