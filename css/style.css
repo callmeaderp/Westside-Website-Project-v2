@@ -1532,13 +1532,8 @@ select.form-control {
     display: none;
   }
 
-  /* Dropdown arrow toggle button — positioned absolutely so it doesn't
-     shift the Services text off-center relative to other nav items */
+  /* Dropdown arrow toggle button — separate tap target from link */
   .dropdown-arrow {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1567,7 +1562,6 @@ select.form-control {
   }
 
   .main-nav > .nav-dropdown {
-    position: relative;
     width: 100%;
     text-align: center;
     display: flex;
@@ -1576,9 +1570,18 @@ select.form-control {
     border-bottom: 1px solid var(--border-dark);
   }
 
+  /* Invisible spacer that mirrors the arrow button width on the left,
+     so the Services <a> text centers symmetrically in the row */
+  .main-nav > .nav-dropdown::before {
+    content: '';
+    padding: 0 18px;
+    width: 7px;
+    box-sizing: content-box;
+  }
+
   .main-nav > .nav-dropdown > a {
     flex: 1;
-    width: 100%;
+    width: auto;
   }
 
   /* Mobile dropdown — smooth expand via max-height + opacity */

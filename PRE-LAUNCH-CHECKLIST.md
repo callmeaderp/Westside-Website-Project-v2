@@ -19,7 +19,7 @@ Access key `09190d0a-...` wired into `contact.html`. Submissions go to `callmead
 - **Action needed:** Change recipient to Westside's preferred email when decided
 
 ### ✅ Google Analytics 4
-Property `G-HQYE7MKZ9P` installed on all 16 pages (callmeaderp@gmail.com account).
+Property `G-60GGNQVGCD` installed on all 16 pages (callmeaderp@gmail.com account).
 - **Action needed:** Add Westside Gmail as admin when access is available
 
 ### ✅ Code Cleanup

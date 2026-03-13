@@ -20,15 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Inject dropdown arrow toggle buttons — separate tap target from link text
-    // so the arrow toggles the submenu and the link text always navigates
     mainNav.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+      const link = dropdown.querySelector(':scope > a');
       const arrow = document.createElement('button');
       arrow.className = 'dropdown-arrow';
       arrow.setAttribute('aria-label', 'Toggle submenu');
-      dropdown.querySelector(':scope > a').after(arrow);
+      link.after(arrow);
 
+      // Chevron always toggles the dropdown open/closed
       arrow.addEventListener('click', () => {
         dropdown.classList.toggle('open');
+      });
+
+      // Services link: first click opens dropdown, second click navigates
+      link.addEventListener('click', (e) => {
+        if (!dropdown.classList.contains('open')) {
+          e.preventDefault();
+          dropdown.classList.add('open');
+        }
+        // If already open, let the default navigation happen (handled by
+        // the delegated handler below which closes the mobile menu)
       });
     });
 
@@ -36,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mainNav.addEventListener('click', (e) => {
       const link = e.target.closest('a');
       if (!link || !mainNav.contains(link)) return;
+
+      // Don't close the menu if we just opened a dropdown (prevented default above)
+      if (e.defaultPrevented) return;
 
       menuToggle.classList.remove('active');
       mainNav.classList.remove('open');
@@ -296,6 +310,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const result = await response.json();
         if (result.success) {
+          // Track form submission as Lead conversion in Meta Pixel
+          if (typeof fbq === 'function') fbq('track', 'Lead');
           btn.textContent = '\u2713 Message Sent!';
           btn.style.background = 'var(--green-primary)';
           contactForm.reset();
