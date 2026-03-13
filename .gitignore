@@ -1,3 +1,6 @@
 screenshots/
 node_modules/
 .wrangler/
+dev-server.py
+*.patch
+temp-*

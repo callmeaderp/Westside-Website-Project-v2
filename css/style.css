@@ -771,15 +771,19 @@ section {
   border: 1px solid var(--border-dark);
   display: flex;
   flex-direction: column;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-color: rgba(108, 197, 81, 0.3);
+  transform: translateY(-12px) scale(1.04);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.25);
+  border-color: rgba(108, 197, 81, 0.4);
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.05), box-shadow 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), border-color 0.3s var(--ease-out);
+}
+.js .stagger-children.visible > .card:hover {
+  transition-delay: 0s;
 }
 
 .card-image {
@@ -1213,6 +1217,8 @@ select.form-control {
 .js .stagger-children.visible > * {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.5s var(--ease-out), transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.05), box-shadow 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), border-color 0.3s var(--ease-out);
+  transition-delay: 0s;
 }
 
 /* ═══ ACCESSIBILITY ═══ */
@@ -1268,13 +1274,41 @@ select.form-control {
   flex-shrink: 0;
 }
 .check-list.check-list-top li {
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 12px;
+  padding: 10px 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.check-list.check-list-top li::before {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+  margin-top: 3px;
+}
+.check-list.check-list-top li strong {
+  color: var(--text-white);
+  font-size: 1rem;
 }
 .section-white .check-list li {
   color: var(--text-light);
 }
+.section-white .check-list.check-list-top li {
+  color: var(--text-muted);
+}
 .section-white .check-list li::before {
   color: var(--green-bright);
+}
+
+/* Service card flex layout — aligns check-lists across card rows */
+.stagger-children > div {
+  display: flex;
+  flex-direction: column;
+}
+.stagger-children > div > .check-list {
+  margin-top: auto;
 }
 
 /* ═══ TESTIMONIAL CARDS ═══ */
@@ -1420,6 +1454,28 @@ select.form-control {
     transform: translateX(0);
   }
 
+  /* Staggered entrance — links start invisible/offset, transition in when .open.
+     No transition on base state so closing snaps instantly while panel slides out. */
+  .main-nav > a,
+  .main-nav > .nav-dropdown {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .main-nav.open > a,
+  .main-nav.open > .nav-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  }
+
+  .main-nav.open > :nth-child(1) { transition-delay: 0.05s; }
+  .main-nav.open > :nth-child(2) { transition-delay: 0.09s; }
+  .main-nav.open > :nth-child(3) { transition-delay: 0.13s; }
+  .main-nav.open > :nth-child(4) { transition-delay: 0.17s; }
+  .main-nav.open > :nth-child(5) { transition-delay: 0.21s; }
+  .main-nav.open > :nth-child(6) { transition-delay: 0.25s; }
+
   /* Mobile nav links — generous tap targets, clear hierarchy */
   .main-nav > a,
   .main-nav > .nav-dropdown > a {
@@ -1433,9 +1489,31 @@ select.form-control {
     display: block;
   }
 
-  .main-nav > a::after,
-  .main-nav > .nav-dropdown > a::after {
+  /* Kill desktop underline ::after on regular nav links */
+  .main-nav > a::after {
     display: none;
+  }
+
+  /* Dropdown toggle: rotating chevron indicator (replaces underline ::after) */
+  .main-nav > .nav-dropdown > a::after {
+    content: '';
+    display: inline-block;
+    position: static;
+    width: 7px;
+    height: 7px;
+    background: none;
+    border-right: 1.5px solid var(--text-muted);
+    border-bottom: 1.5px solid var(--text-muted);
+    transform: rotate(45deg);
+    margin-left: 10px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .nav-dropdown.open > a::after {
+    transform: rotate(-135deg);
+    margin-bottom: -1px;
   }
 
   .main-nav > .nav-dropdown {
@@ -1443,24 +1521,26 @@ select.form-control {
     text-align: center;
   }
 
-  /* Mobile dropdown — expands inline */
+  /* Mobile dropdown — smooth expand via max-height + opacity */
   .nav-dropdown .dropdown-menu {
     position: static;
     transform: none;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.04);
     border: none;
     border-radius: 0;
     box-shadow: none;
-    opacity: 1;
     visibility: visible;
     padding: 0;
     min-width: auto;
-    display: none;
-    transition: none;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.45s var(--ease-out), opacity 0.35s var(--ease-out);
   }
 
   .nav-dropdown.open .dropdown-menu {
-    display: block;
+    max-height: 500px;
+    opacity: 1;
   }
 
   /* Override desktop :hover rule (higher specificity) that leaks
@@ -1472,10 +1552,18 @@ select.form-control {
 
   .dropdown-menu a {
     text-align: center;
-    padding: 10px 0;
-    font-size: 0.9rem;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    font-weight: 400;
     color: var(--text-muted);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .dropdown-menu a:hover,
+  .dropdown-menu a:active {
+    color: var(--green-bright);
+    background: rgba(108, 197, 81, 0.06);
   }
 
   .dropdown-menu a:last-child {
