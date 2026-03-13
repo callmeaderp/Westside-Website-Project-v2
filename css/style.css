@@ -356,6 +356,7 @@ section {
   transform: translateX(-50%) translateY(10px);
   transition: opacity 0.35s var(--ease-out), visibility 0.35s, transform 0.35s var(--ease-out);
   box-shadow: var(--shadow-lg);
+  z-index: 100;
 }
 
 .nav-dropdown:hover .dropdown-menu {
@@ -386,6 +387,11 @@ section {
 }
 
 .dropdown-menu a::after {
+  display: none;
+}
+
+/* Arrow toggle button — hidden on desktop, visible on mobile */
+.dropdown-arrow {
   display: none;
 }
 
@@ -1489,6 +1495,11 @@ select.form-control {
     display: block;
   }
 
+  /* Dropdown link: border moves to the wrapper so it spans link + arrow */
+  .main-nav > .nav-dropdown > a {
+    border-bottom: none;
+  }
+
   /* Kill desktop underline ::after on regular nav links */
   .main-nav > a::after {
     display: none;
@@ -1516,9 +1527,52 @@ select.form-control {
     margin-bottom: -1px;
   }
 
+  /* When JS injects the toggle button, hide the pseudo-element chevron */
+  .js .main-nav > .nav-dropdown > a::after {
+    display: none;
+  }
+
+  /* Dropdown arrow toggle button — separate tap target from link */
+  .dropdown-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 14px 18px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .dropdown-arrow::after {
+    content: '';
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid var(--text-muted);
+    border-bottom: 1.5px solid var(--text-muted);
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .nav-dropdown.open .dropdown-arrow::after {
+    transform: rotate(-135deg);
+    margin-bottom: -1px;
+  }
+
   .main-nav > .nav-dropdown {
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .main-nav > .nav-dropdown > a {
+    flex: 1;
+    width: auto;
   }
 
   /* Mobile dropdown — smooth expand via max-height + opacity */
@@ -1532,6 +1586,7 @@ select.form-control {
     visibility: visible;
     padding: 0;
     min-width: auto;
+    width: 100%;
     max-height: 0;
     opacity: 0;
     overflow: hidden;

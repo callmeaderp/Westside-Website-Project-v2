@@ -19,24 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = mainNav.classList.contains('open') ? 'hidden' : '';
     });
 
-    // Single delegated handler for all nav link clicks — avoids race
-    // conditions between separate "close menu" and "dropdown toggle" handlers
+    // Inject dropdown arrow toggle buttons — separate tap target from link text
+    // so the arrow toggles the submenu and the link text always navigates
+    mainNav.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+      const arrow = document.createElement('button');
+      arrow.className = 'dropdown-arrow';
+      arrow.setAttribute('aria-label', 'Toggle submenu');
+      dropdown.querySelector(':scope > a').after(arrow);
+
+      arrow.addEventListener('click', () => {
+        dropdown.classList.toggle('open');
+      });
+    });
+
+    // Delegated handler for nav link clicks — closes menu on navigation
     mainNav.addEventListener('click', (e) => {
       const link = e.target.closest('a');
       if (!link || !mainNav.contains(link)) return;
 
-      const isMobile = window.innerWidth <= 768;
-      const dropdown = link.parentElement.closest('.nav-dropdown');
-      const isDropdownToggle = dropdown && link === dropdown.querySelector(':scope > a');
-
-      // Mobile: first tap on dropdown toggle opens submenu, not navigation
-      if (isMobile && isDropdownToggle && !dropdown.classList.contains('open')) {
-        e.preventDefault();
-        dropdown.classList.add('open');
-        return; // keep nav open, don't navigate
-      }
-
-      // Everything else: close the nav (navigation proceeds normally)
       menuToggle.classList.remove('active');
       mainNav.classList.remove('open');
       document.body.style.overflow = '';
