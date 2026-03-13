@@ -644,26 +644,34 @@ section {
   position: absolute;
   left: 50%;
   bottom: clamp(18px, 4vh, 34px);
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(18px);
   z-index: 2;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px 11px;
+  gap: 6px;
+  padding: 12px 16px 18px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(180deg, rgba(17, 17, 17, 0.28) 0%, rgba(17, 17, 17, 0.6) 100%);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
   color: rgba(255, 255, 255, 0.76);
   text-decoration: none;
-  opacity: 0.92;
+  opacity: 0;
+  pointer-events: none;
   transition:
-    opacity 0.35s var(--ease-out),
-    transform 0.35s var(--ease-out),
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out),
     border-color 0.35s var(--ease-out),
     background 0.35s var(--ease-out),
     color 0.35s var(--ease-out);
+}
+
+/* Entrance: slide up + fade in after JS adds .is-visible */
+.scroll-cue.is-visible {
+  opacity: 0.92;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
 
 .scroll-cue__label {
@@ -671,6 +679,17 @@ section {
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s var(--ease-out), max-height 0.3s var(--ease-out);
+}
+
+/* Show label on hover/focus */
+.scroll-cue:hover .scroll-cue__label,
+.scroll-cue:focus-visible .scroll-cue__label {
+  opacity: 1;
+  max-height: 1.2em;
 }
 
 .scroll-cue__icon {
@@ -678,7 +697,7 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  animation: scroll-cue-drift 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation: scroll-cue-bounce 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 .scroll-cue__icon span {
@@ -691,7 +710,7 @@ section {
 
 .scroll-cue__icon span:last-child {
   margin-top: -4px;
-  opacity: 0.55;
+  opacity: 0.7;
 }
 
 .scroll-cue:hover,
@@ -699,7 +718,7 @@ section {
   color: var(--text-white);
   border-color: rgba(108, 197, 81, 0.35);
   background: linear-gradient(180deg, rgba(17, 17, 17, 0.42) 0%, rgba(17, 17, 17, 0.74) 100%);
-  transform: translate(-50%, -2px);
+  transform: translateX(-50%) translateY(-2px);
 }
 
 .scroll-cue:focus-visible {
@@ -707,24 +726,40 @@ section {
   outline-offset: 4px;
 }
 
-.scroll-cue.is-hidden {
-  opacity: 0;
+/* Scroll-driven fade-out — opacity set inline by JS */
+.scroll-cue.is-fading {
   pointer-events: none;
-  transform: translate(-50%, 12px);
+  /* opacity controlled via inline style for smooth scroll-linked fade */
+  transition:
+    transform 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    background 0.35s var(--ease-out),
+    color 0.35s var(--ease-out);
+  /* opacity NOT transitioned — JS sets it per-frame for scroll-linked smoothness */
 }
 
-@keyframes scroll-cue-drift {
+.scroll-cue.is-hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+@keyframes scroll-cue-bounce {
   0%, 100% {
     transform: translateY(0);
-    opacity: 0.74;
+    opacity: 0.7;
   }
-  35% {
-    transform: translateY(2px);
-    opacity: 0.86;
+  20% {
+    transform: translateY(-2px);
+    opacity: 0.8;
   }
-  62% {
-    transform: translateY(7px);
+  50% {
+    transform: translateY(8px);
     opacity: 1;
+  }
+  70% {
+    transform: translateY(2px);
+    opacity: 0.9;
   }
 }
 
@@ -1199,11 +1234,20 @@ select.form-control {
   .js .fade-in-right,
   .js .stagger-children > *,
   .scroll-cue {
-    opacity: 1 !important;
-    transform: none !important;
     transition: none !important;
   }
-
+  .scroll-cue.is-visible {
+    opacity: 0.92 !important;
+    transform: translateX(-50%) !important;
+  }
+  .scroll-cue.is-hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) !important;
+  }
+  .scroll-cue__label {
+    opacity: 1 !important;
+    max-height: 1.2em !important;
+  }
   .scroll-cue__icon {
     animation: none !important;
   }
@@ -1458,7 +1502,7 @@ select.form-control {
   .hero-content h1 { font-size: 2.5rem; }
 
   .scroll-cue {
-    bottom: 18px;
+    bottom: clamp(24px, 6vh, 40px);
     padding: 11px 14px 10px;
   }
 
@@ -1503,9 +1547,67 @@ select.form-control {
 .overflow-hidden { overflow: hidden; }
 
 /* ═══ BODY TEXT REFINEMENTS ═══ */
+
+/* Selection highlight — brand green tint */
+::selection {
+  background: rgba(108, 197, 81, 0.25);
+  color: var(--text-white);
+}
+
+/* Subtle letter spacing on readable passages */
 .chess-content p,
 .step-content p,
 .section-subtitle {
+  letter-spacing: 0.01em;
+}
+
+/* Modern line-wrapping: 'pretty' avoids orphaned words on the last line,
+   'balance' evens out short centered text. Progressive — no-ops on older browsers. */
+.chess-content p,
+.step-content p,
+.timeline-desc,
+.value-card p,
+.footer-about p {
+  text-wrap: pretty;
+}
+.section-subtitle,
+.cta-banner p,
+.hero-content p,
+.card-body p {
+  text-wrap: balance;
+}
+
+/* Emphasis hierarchy — subtle lift against --text-muted (#999) */
+p strong,
+li strong,
+td strong {
+  color: #b0b0b0;
+  font-weight: 600;
+}
+p em,
+li em {
+  color: #b0b0b0;
+}
+
+/* Gentle hyphenation on longer passage blocks for cleaner right edges */
+.chess-content p,
+.step-content p {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  -webkit-hyphenate-limit-chars: 8 3 3;
+  hyphenate-limit-chars: 8 3 3;
+}
+
+/* General passage text inside content sections — text-wrap for all prose */
+.container p {
+  text-wrap: pretty;
+}
+
+/* Lead paragraph — opt-in class for opening/introductory text */
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-light);
   letter-spacing: 0.01em;
 }
 
