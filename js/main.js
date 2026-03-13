@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const scrollCue = document.createElement('a');
-      scrollCue.className = 'scroll-cue is-hidden';
+      scrollCue.className = 'scroll-cue';
       scrollCue.href = `#${nextSection.id}`;
       scrollCue.setAttribute('aria-label', 'Scroll to the next section');
       scrollCue.innerHTML = `
@@ -131,15 +131,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
       primaryHero.appendChild(scrollCue);
 
+      // Fade thresholds — start fading at 20px, fully gone by 120px
+      const FADE_START = 20;
+      const FADE_END = 120;
+      let dismissed = false;
+
       const updateScrollCue = () => {
         const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
-        const shouldShow = scrollableDistance > 48 && window.scrollY < 64;
-        scrollCue.classList.toggle('is-hidden', !shouldShow);
+        const y = window.scrollY;
+
+        if (scrollableDistance <= 48 || dismissed) {
+          scrollCue.classList.remove('is-visible', 'is-fading');
+          scrollCue.classList.add('is-hidden');
+          scrollCue.style.opacity = '';
+          return;
+        }
+
+        if (y <= FADE_START) {
+          // Fully visible
+          scrollCue.classList.remove('is-hidden', 'is-fading');
+          scrollCue.classList.add('is-visible');
+          scrollCue.style.opacity = '';
+        } else if (y >= FADE_END) {
+          // Fully hidden
+          scrollCue.classList.remove('is-visible', 'is-fading');
+          scrollCue.classList.add('is-hidden');
+          scrollCue.style.opacity = '';
+        } else {
+          // Gradual fade zone
+          const progress = (y - FADE_START) / (FADE_END - FADE_START);
+          const fadedOpacity = 0.92 * (1 - progress);
+          scrollCue.classList.remove('is-hidden');
+          scrollCue.classList.add('is-visible', 'is-fading');
+          scrollCue.style.opacity = fadedOpacity.toFixed(3);
+        }
       };
+
+      // Touch dismissal — any touch on hero starts fading
+      const resetOnTop = () => {
+        if (window.scrollY < 5 && dismissed) {
+          dismissed = false;
+          updateScrollCue();
+        }
+      };
+      window.addEventListener('scroll', resetOnTop, { passive: true });
+
+      primaryHero.addEventListener('touchstart', () => {
+        if (!dismissed && window.scrollY < FADE_END) {
+          dismissed = true;
+          scrollCue.classList.remove('is-visible', 'is-fading');
+          scrollCue.classList.add('is-hidden');
+          scrollCue.style.opacity = '';
+        }
+      }, { passive: true });
 
       window.addEventListener('scroll', updateScrollCue, { passive: true });
       window.addEventListener('resize', updateScrollCue);
-      requestAnimationFrame(updateScrollCue);
+
+      // Delayed entrance — wait 500ms then reveal
+      const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollableDistance > 48 && window.scrollY < FADE_START) {
+        setTimeout(() => {
+          if (window.scrollY < FADE_START && !dismissed) {
+            scrollCue.classList.add('is-visible');
+          }
+        }, 500);
+      } else {
+        requestAnimationFrame(updateScrollCue);
+      }
     }
   }
 

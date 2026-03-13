@@ -650,7 +650,7 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 12px 16px 18px;
+  padding: 12px 16px 26px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(180deg, rgba(17, 17, 17, 0.28) 0%, rgba(17, 17, 17, 0.6) 100%);
@@ -1499,11 +1499,28 @@ select.form-control {
   .hero { min-height: 80vh; }
   .page-hero { min-height: 40vh; }
 
+  /* Replace disconnected accent lines with a full inset frame on mobile */
+  .hero .accent-line-h,
+  .hero .accent-line-corner {
+    display: none;
+  }
+  .hero::before {
+    top: 4%;
+    left: 4%;
+    right: 4%;
+    bottom: 4%;
+    width: auto;
+    height: auto;
+    background: none;
+    border: 1px solid rgba(108, 197, 81, 0.15);
+    opacity: 1;
+  }
+
   .hero-content h1 { font-size: 2.5rem; }
 
   .scroll-cue {
     bottom: clamp(24px, 6vh, 40px);
-    padding: 11px 14px 10px;
+    padding: 11px 14px 20px;
   }
 
   .scroll-cue__label {
