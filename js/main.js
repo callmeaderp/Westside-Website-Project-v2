@@ -6,6 +6,7 @@
 document.documentElement.classList.add('js');
 
 document.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ─── Mobile Menu Toggle ───
   const menuToggle = document.querySelector('.menu-toggle');
@@ -18,30 +19,30 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = mainNav.classList.contains('open') ? 'hidden' : '';
     });
 
-    // Close menu on link click
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        mainNav.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+    // Single delegated handler for all nav link clicks — avoids race
+    // conditions between separate "close menu" and "dropdown toggle" handlers
+    mainNav.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (!link || !mainNav.contains(link)) return;
+
+      const isMobile = window.innerWidth <= 768;
+      const dropdown = link.parentElement.closest('.nav-dropdown');
+      const isDropdownToggle = dropdown && link === dropdown.querySelector(':scope > a');
+
+      // Mobile: first tap on dropdown toggle opens submenu, not navigation
+      if (isMobile && isDropdownToggle && !dropdown.classList.contains('open')) {
+        e.preventDefault();
+        dropdown.classList.add('open');
+        return; // keep nav open, don't navigate
+      }
+
+      // Everything else: close the nav (navigation proceeds normally)
+      menuToggle.classList.remove('active');
+      mainNav.classList.remove('open');
+      document.body.style.overflow = '';
+      mainNav.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
     });
   }
-
-  // ─── Mobile Dropdown Toggle ───
-  // First tap opens dropdown, second tap navigates to the page
-  document.querySelectorAll('.nav-dropdown > a').forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        const parent = toggle.parentElement;
-        if (!parent.classList.contains('open')) {
-          e.preventDefault();
-          parent.classList.add('open');
-        }
-        // If already open, allow normal navigation to services.html
-      }
-    });
-  });
 
   // ─── Header Background on Scroll ───
   const header = document.querySelector('.site-header');
@@ -98,8 +99,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ─── Scroll Cue for Scrollable Hero Pages ───
+  const primaryHero = document.querySelector('main > .hero');
+  if (primaryHero) {
+    const nextSection = primaryHero.nextElementSibling;
+
+    if (nextSection) {
+      const pageSlug = currentPage.replace(/[^a-z0-9]+/gi, '-').toLowerCase().replace(/^-|-$/g, '') || 'home';
+      if (!nextSection.id) {
+        nextSection.id = `page-content-${pageSlug}`;
+      }
+
+      const scrollCue = document.createElement('a');
+      scrollCue.className = 'scroll-cue is-hidden';
+      scrollCue.href = `#${nextSection.id}`;
+      scrollCue.setAttribute('aria-label', 'Scroll to the next section');
+      scrollCue.innerHTML = `
+        <span class="scroll-cue__label">Scroll</span>
+        <span class="scroll-cue__icon" aria-hidden="true"><span></span><span></span></span>
+      `;
+
+      scrollCue.addEventListener('click', (e) => {
+        e.preventDefault();
+        const headerOffset = header ? header.offsetHeight + 16 : 16;
+        const targetTop = nextSection.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({
+          top: Math.max(targetTop, 0),
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      });
+
+      primaryHero.appendChild(scrollCue);
+
+      const updateScrollCue = () => {
+        const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
+        const shouldShow = scrollableDistance > 48 && window.scrollY < 64;
+        scrollCue.classList.toggle('is-hidden', !shouldShow);
+      };
+
+      window.addEventListener('scroll', updateScrollCue, { passive: true });
+      window.addEventListener('resize', updateScrollCue);
+      requestAnimationFrame(updateScrollCue);
+    }
+  }
+
   // ─── Smooth Scroll for Anchor Links ───
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  document.querySelectorAll('a[href^="#"]:not(.scroll-cue)').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (target) {
@@ -245,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Parallax on Hero ───
   const heroSections = document.querySelectorAll('.hero-bg');
-  if (heroSections.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (heroSections.length > 0 && !prefersReducedMotion) {
     window.addEventListener('scroll', () => {
       heroSections.forEach(bg => {
         const rect = bg.parentElement.getBoundingClientRect();

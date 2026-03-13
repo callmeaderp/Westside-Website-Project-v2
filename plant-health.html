@@ -13,12 +13,12 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5-Step Lawn Care Program | Westside Professional Landscape</title>
-  <meta name="description" content="Westside's 5-Step Plant Health & Lawn Care Program — $580/season starting. Fertilization, weed control, grub protection included. NYS DEC certified. Rochester, NY.">
+  <title>5-Step Fertilization &amp; Weed Control Program | Westside Professional Landscape</title>
+  <meta name="description" content="Westside's 5-Step Fertilization &amp; Weed Control Program — 50% off your first treatment. Fertilization, weed control, grub protection included. NYS DEC certified. Rochester, NY.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="5-Step Lawn Care Program | Westside Professional Landscape">
-  <meta property="og:description" content="Westside's 5-Step Plant Health & Lawn Care Program — $580/season starting. Fertilization, weed control, grub protection included. NYS DEC certified. Rochester, NY.">
+  <meta property="og:title" content="5-Step Fertilization &amp; Weed Control Program | Westside Professional Landscape">
+  <meta property="og:description" content="Westside's 5-Step Fertilization &amp; Weed Control Program — 50% off your first treatment. Fertilization, weed control, grub protection included. NYS DEC certified. Rochester, NY.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://westsideprolandscape.com/plant-health.html">
   <meta property="og:site_name" content="Westside Professional Landscape">
@@ -49,7 +49,7 @@
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://westsideprolandscape.com/"},
       {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://westsideprolandscape.com/services.html"},
-      {"@type": "ListItem", "position": 3, "name": "Plant Health & Lawn Care", "item": "https://westsideprolandscape.com/plant-health.html"}
+      {"@type": "ListItem", "position": 3, "name": "Fertilization & Weed Control", "item": "https://westsideprolandscape.com/plant-health.html"}
     ]
   }
   </script>
@@ -58,8 +58,8 @@
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "5-Step Lawn Care Program",
-    "description": "Comprehensive 5-step seasonal lawn care program including fertilization, weed control, crabgrass prevention, and free grub control. NYS DEC Certified Applicators.",
+    "name": "5-Step Fertilization & Weed Control Program",
+    "description": "Comprehensive 5-step seasonal fertilization and weed control program including crabgrass prevention, targeted weed treatments, and free grub control. 50% off first treatment. NYS DEC Certified Applicators.",
     "provider": {
       "@type": "LandscapingBusiness",
       "@id": "https://westsideprolandscape.com/#business"
@@ -71,14 +71,14 @@
     },
     "offers": {
       "@type": "Offer",
-      "price": "580",
+      "price": "116",
       "priceCurrency": "USD",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "price": "580",
+        "price": "116",
         "priceCurrency": "USD",
-        "unitText": "season",
-        "description": "Starting price based on standard-size lawns"
+        "unitText": "treatment",
+        "description": "Per-treatment price for average-size lawns. 50% off first treatment."
       },
       "availability": "https://schema.org/InStock"
     }
@@ -86,6 +86,10 @@
   </script>
 
   <style>
+    /* Slightly smaller H1 to fit the longer service name on one line */
+    .hero-content h1 {
+      font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+    }
     .program-step {
       display: grid;
       grid-template-columns: 80px 1fr;
@@ -178,31 +182,42 @@
       background: var(--bg-dark-card);
       border: 2px solid var(--green-bright);
       border-radius: var(--radius-lg);
-      padding: var(--space-2xl);
+      padding: var(--space-lg);
       text-align: center;
       position: sticky;
-      top: calc(var(--header-height) + var(--space-xl));
+      top: calc(var(--header-height) + var(--space-md));
     }
     .pricing-card .price {
       font-family: var(--font-heading);
-      font-size: 4rem;
+      font-size: 2.5rem;
       color: var(--green-bright);
       line-height: 1;
     }
     .pricing-card .price-sub {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      margin-bottom: var(--space-xl);
+      margin-bottom: var(--space-md);
+    }
+    .pricing-card .promo-callout {
+      background: rgba(108, 197, 81, 0.1);
+      border: 1px solid rgba(108, 197, 81, 0.3);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm) var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    .pricing-card .promo-callout strong {
+      color: var(--green-bright);
     }
     .pricing-card .early-bird {
-      background: rgba(232, 200, 74, 0.1);
-      border: 1px solid rgba(232, 200, 74, 0.3);
+      background: rgba(232, 200, 74, 0.06);
+      border: 1px solid rgba(232, 200, 74, 0.2);
       border-radius: var(--radius-md);
-      padding: var(--space-md);
-      margin-bottom: var(--space-xl);
+      padding: 6px var(--space-md);
+      margin-bottom: var(--space-md);
     }
     .pricing-card .early-bird strong {
       color: #E8C84A;
+      font-size: 0.8rem;
     }
     @media (max-width: 1024px) {
       .program-details-grid {
@@ -213,6 +228,9 @@
       }
     }
     @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 1.7rem;
+      }
       .program-step {
         grid-template-columns: 50px 1fr;
         gap: var(--space-md);
@@ -248,7 +266,7 @@
           <div class="dropdown-menu">
             <a href="landscape-design.html">Landscape Design</a>
             <a href="landscape-maintenance.html">Maintenance</a>
-            <a href="plant-health.html" class="active">Plant Health & Lawn Care</a>
+            <a href="plant-health.html" class="active">Fertilization &amp; Weed Control</a>
             <a href="hardscaping.html">Hardscaping</a>
             <a href="water-features.html">Water Features</a>
             <a href="snow-ice-management.html">Snow & Ice Management</a>
@@ -278,8 +296,8 @@
     <div class="accent-line-h"></div>
     <div class="hero-content">
       <span class="badge badge-green" style="margin-bottom: var(--space-lg); font-size: 0.85rem;">NYS DEC Certified Applicator</span>
-      <h1>5-STEP <span class="text-green">LAWN CARE</span> PROGRAM</h1>
-      <p>Five precisely timed seasonal applications for a lush, weed-free, healthy lawn. Starting at just $580 per season.</p>
+      <h1>5-STEP<br><span class="text-green">FERTILIZATION &amp; WEED CONTROL</span><br>PROGRAM</h1>
+      <p>Five precisely timed seasonal applications for a lush, weed-free, healthy lawn. 50% off your first treatment — just $58 for the average lawn.</p>
       <div class="hero-buttons">
         <a href="#program-details" class="btn btn-primary btn-lg">See the Program</a>
         <a href="contact.html" class="btn btn-outline btn-lg">Free Lawn Evaluation</a>
@@ -292,16 +310,16 @@
     <div class="container">
       <div class="grid-4 stagger-children" style="text-align: center;">
         <div style="padding: var(--space-lg);">
+          <div style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--green-bright); margin-bottom: 8px;">50%</div>
+          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">Off First Treatment</div>
+        </div>
+        <div style="padding: var(--space-lg);">
+          <div style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--green-bright); margin-bottom: 8px;">$116</div>
+          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">Per Treatment (Avg Lawn)</div>
+        </div>
+        <div style="padding: var(--space-lg);">
           <div style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--green-bright); margin-bottom: 8px;">5</div>
           <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">Seasonal Visits</div>
-        </div>
-        <div style="padding: var(--space-lg);">
-          <div style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--green-bright); margin-bottom: 8px;">$580</div>
-          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">Starting Per Season</div>
-        </div>
-        <div style="padding: var(--space-lg);">
-          <div style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--green-bright); margin-bottom: 8px;">✓</div>
-          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted);">We Stand Behind Our Work</div>
         </div>
         <div style="padding: var(--space-lg);">
           <div style="font-family: var(--font-heading); font-size: 2.5rem; color: #E8C84A; margin-bottom: 8px;">FREE</div>
@@ -314,13 +332,13 @@
   <!-- ═══ PROGRAM DETAILS ═══ -->
   <section class="section-dark" id="program-details">
     <div class="container">
-      <div class="grid-2 fade-in program-details-grid" style="gap: var(--space-4xl); grid-template-columns: 1fr 380px;">
+      <div class="grid-2 fade-in program-details-grid" style="gap: var(--space-3xl); grid-template-columns: 1fr 340px;">
 
         <!-- Steps Column -->
         <div>
           <span class="section-label">The Program</span>
           <h2 style="margin-bottom: var(--space-lg);">FIVE STEPS TO A <span class="text-green">PERFECT LAWN</span></h2>
-          <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: var(--space-xl);">Each application is precisely timed to match your lawn's growth cycle. Our NYS DEC Certified Applicators use professional-grade products for results you simply can't get from store-bought alternatives.</p>
+          <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: var(--space-xl);">Each treatment is precisely timed to match your lawn's growth cycle. Our NYS DEC Certified Applicators use professional-grade products for results you simply can't get from store-bought alternatives.</p>
 
           <!-- Step 1 -->
           <div class="program-step">
@@ -426,46 +444,48 @@
         <!-- Pricing Sidebar -->
         <div>
           <div class="pricing-card">
-            <span class="badge badge-green" style="margin-bottom: var(--space-lg);">Most Popular</span>
-            <h3 style="margin-bottom: var(--space-md);">5-STEP PROGRAM</h3>
-            <div class="price">$580</div>
-            <div class="price-sub">per season starting price</div>
+            <span class="badge badge-green" style="margin-bottom: var(--space-sm); font-size: 0.7rem; padding: 4px 10px;">Most Popular</span>
+            <h3 style="margin-bottom: 4px; font-size: 0.9rem;">5-STEP PROGRAM</h3>
+            <div class="price">$116</div>
+            <div class="price-sub">per treatment · avg lawn</div>
 
-            <div class="early-bird">
-              <strong>Prepayment Discount — Save 5%</strong>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Pay in full before your first application and save 5% on your season.</p>
+            <div class="promo-callout">
+              <strong style="font-size: 0.95rem;">50% OFF First Treatment</strong>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Just <strong style="color: var(--green-bright);">$58</strong> for your first visit</p>
             </div>
 
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: var(--space-lg); line-height: 1.5;">Starting price based on standard-size lawns. Final pricing determined after free lawn evaluation. Contact us for details.</p>
+            <div class="early-bird">
+              <strong>Prepay &amp; Save 5%</strong>
+            </div>
 
-            <ul style="text-align: left; margin-bottom: var(--space-xl);">
-              <li style="padding: 10px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-dark);">
-                <span style="color: var(--green-bright);">✓</span> 5 seasonal applications
+            <ul style="text-align: left; margin-bottom: var(--space-md); font-size: 0.85rem;">
+              <li style="padding: 5px 0; color: var(--text-light); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-dark);">
+                <span style="color: var(--green-bright); flex-shrink: 0;">✓</span> 5 seasonal treatments
               </li>
-              <li style="padding: 10px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-dark);">
-                <span style="color: var(--green-bright);">✓</span> Balanced fertilization
+              <li style="padding: 5px 0; color: var(--text-light); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-dark);">
+                <span style="color: var(--green-bright); flex-shrink: 0;">✓</span> Balanced fertilization
               </li>
-              <li style="padding: 10px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-dark);">
-                <span style="color: var(--green-bright);">✓</span> Weed & crabgrass control
+              <li style="padding: 5px 0; color: var(--text-light); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-dark);">
+                <span style="color: var(--green-bright); flex-shrink: 0;">✓</span> Weed &amp; crabgrass control
               </li>
-              <li style="padding: 10px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-dark);">
-                <span style="color: #E8C84A;">✓</span> <strong style="color: #E8C84A;">FREE grub control</strong>
+              <li style="padding: 5px 0; color: var(--text-light); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-dark);">
+                <span style="color: #E8C84A; flex-shrink: 0;">✓</span> <strong style="color: #E8C84A;">FREE grub control</strong>
               </li>
-              <li style="padding: 10px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-dark);">
-                <span style="color: var(--green-bright);">✓</span> Insect inspections
+              <li style="padding: 5px 0; color: var(--text-light); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-dark);">
+                <span style="color: var(--green-bright); flex-shrink: 0;">✓</span> Insect inspections
               </li>
-              <li style="padding: 10px 0; color: var(--text-light); display: flex; align-items: center; gap: 10px;">
-                <span style="color: var(--green-bright);">✓</span> We stand behind our work
+              <li style="padding: 5px 0; color: var(--text-light); display: flex; align-items: center; gap: 8px;">
+                <span style="color: var(--green-bright); flex-shrink: 0;">✓</span> We stand behind our work
               </li>
             </ul>
 
-            <a href="contact.html" class="btn btn-primary w-full" style="margin-bottom: var(--space-md);">Get Started Today</a>
-            <a href="contact.html" class="btn btn-outline-green w-full btn-sm">Request Free Evaluation</a>
+            <a href="contact.html" class="btn btn-primary btn-sm w-full" style="margin-bottom: 6px;">Get Started Today</a>
+            <a href="contact.html" class="btn btn-outline-green w-full btn-sm">Free Evaluation</a>
 
-            <div style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--border-dark);">
-              <div style="display: flex; align-items: center; gap: 10px; justify-content: center;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6CC551" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">NYS DEC Certified Applicator</span>
+            <div style="margin-top: var(--space-sm); padding-top: var(--space-sm); border-top: 1px solid var(--border-dark);">
+              <div style="display: flex; align-items: center; gap: 6px; justify-content: center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6CC551" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">NYS DEC Certified Applicator</span>
               </div>
             </div>
           </div>
@@ -544,12 +564,12 @@
           <span class="section-label">Why Westside</span>
           <h2>PROFESSIONAL-GRADE <span class="text-green">RESULTS</span></h2>
           <p>Big-box store products and DIY approaches can't match the results of a professionally managed lawn care program. Here's why our clients trust us:</p>
-          <ul class="check-list check-list-top">
-            <li><strong>NYS DEC Certified Applicators</strong> — every technician is fully licensed and trained</li>
-            <li><strong>Professional-grade products</strong> — not available at retail stores, more effective and longer lasting</li>
-            <li><strong>Precisely timed applications</strong> — each visit is scheduled to match your lawn's growth cycle</li>
-            <li><strong>We stand behind our work</strong> — if you're not satisfied with a treatment, contact us and we'll make it right</li>
-            <li><strong>26+ years serving Rochester</strong> — we know the local soil, climate, and grass types</li>
+          <ul class="check-list check-list-detailed">
+            <li><strong>NYS DEC Certified Applicators</strong><span>Every technician is fully licensed and trained</span></li>
+            <li><strong>Professional-Grade Products</strong><span>Not available at retail stores — more effective and longer lasting</span></li>
+            <li><strong>Precisely Timed Treatments</strong><span>Each visit is scheduled to match your lawn's growth cycle</span></li>
+            <li><strong>We Stand Behind Our Work</strong><span>Not satisfied with a treatment? Contact us and we'll make it right</span></li>
+            <li><strong>26+ Years Serving Rochester</strong><span>We know the local soil, climate, and grass types</span></li>
           </ul>
         </div>
       </div>
@@ -603,7 +623,7 @@
           <ul>
             <li><a href="landscape-design.html">Landscape Design</a></li>
             <li><a href="landscape-maintenance.html">Maintenance</a></li>
-            <li><a href="plant-health.html">Lawn Care</a></li>
+            <li><a href="plant-health.html">Fertilization &amp; Weed Control</a></li>
             <li><a href="hardscaping.html">Hardscaping</a></li>
             <li><a href="water-features.html">Water Features</a></li>
             <li><a href="snow-ice-management.html">Snow Removal</a></li>
@@ -644,6 +664,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

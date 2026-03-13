@@ -250,7 +250,7 @@ section {
   height: var(--header-height);
   max-width: var(--container-wide);
   margin: 0 auto;
-  padding: 0 var(--space-xl);
+  padding: 0 var(--space-lg);
 }
 
 /* Logo group — Westside + SYNLawn partner logos side by side */
@@ -295,7 +295,7 @@ section {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .main-nav a {
@@ -354,7 +354,7 @@ section {
   opacity: 0;
   visibility: hidden;
   transform: translateX(-50%) translateY(10px);
-  transition: all var(--transition-fast);
+  transition: opacity 0.35s var(--ease-out), visibility 0.35s, transform 0.35s var(--ease-out);
   box-shadow: var(--shadow-lg);
 }
 
@@ -362,6 +362,12 @@ section {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
+  transition-delay: 0.05s;
+}
+
+/* Keep dropdown open briefly when moving mouse away */
+.nav-dropdown .dropdown-menu {
+  transition-delay: 0.15s;
 }
 
 .dropdown-menu a {
@@ -633,20 +639,111 @@ section {
   color: var(--text-light);
 }
 
+/* Scroll cue for scrollable hero pages */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(18px, 4vh, 34px);
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px 11px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0.28) 0%, rgba(17, 17, 17, 0.6) 100%);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+  color: rgba(255, 255, 255, 0.76);
+  text-decoration: none;
+  opacity: 0.92;
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    background 0.35s var(--ease-out),
+    color 0.35s var(--ease-out);
+}
+
+.scroll-cue__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.scroll-cue__icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: scroll-cue-drift 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.scroll-cue__icon span {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(108, 197, 81, 0.92);
+  border-bottom: 2px solid rgba(108, 197, 81, 0.92);
+  transform: rotate(45deg);
+}
+
+.scroll-cue__icon span:last-child {
+  margin-top: -4px;
+  opacity: 0.55;
+}
+
+.scroll-cue:hover,
+.scroll-cue:focus-visible {
+  color: var(--text-white);
+  border-color: rgba(108, 197, 81, 0.35);
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0.42) 0%, rgba(17, 17, 17, 0.74) 100%);
+  transform: translate(-50%, -2px);
+}
+
+.scroll-cue:focus-visible {
+  outline: 2px solid rgba(108, 197, 81, 0.45);
+  outline-offset: 4px;
+}
+
+.scroll-cue.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+}
+
+@keyframes scroll-cue-drift {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.74;
+  }
+  35% {
+    transform: translateY(2px);
+    opacity: 0.86;
+  }
+  62% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
 /* ═══ CARDS ═══ */
 .card {
   background: var(--bg-dark-card);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: all var(--transition-normal);
   border: 1px solid var(--border-dark);
   display: flex;
   flex-direction: column;
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.2);
   border-color: rgba(108, 197, 81, 0.3);
 }
 
@@ -1100,10 +1197,15 @@ select.form-control {
   .js .fade-in,
   .js .fade-in-left,
   .js .fade-in-right,
-  .js .stagger-children > * {
+  .js .stagger-children > *,
+  .scroll-cue {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  .scroll-cue__icon {
+    animation: none !important;
   }
 }
 
@@ -1246,54 +1348,99 @@ select.form-control {
     padding: 0 var(--space-md);
   }
 
-  /* Mobile nav */
+  /* Mobile nav — full-screen overlay below header.
+     backdrop-filter on .site-header creates a containing block for fixed
+     descendants, so bottom: 0 resolves against the header (~70px), not the
+     viewport. Use explicit viewport-unit height instead. */
   .main-nav {
     position: fixed;
     top: var(--header-height);
     left: 0;
     right: 0;
-    bottom: 0;
+    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
     background: var(--bg-dark);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-xl);
+    justify-content: flex-start;
+    padding: var(--space-2xl) var(--space-xl) var(--space-2xl);
+    gap: 0;
     transform: translateX(100%);
-    transition: transform var(--transition-normal);
+    transition: transform 0.35s var(--ease-out);
+    z-index: 9999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .main-nav.open {
     transform: translateX(0);
   }
 
-  .main-nav a {
-    font-size: 1.2rem;
+  /* Mobile nav links — generous tap targets, clear hierarchy */
+  .main-nav > a,
+  .main-nav > .nav-dropdown > a {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 14px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid var(--border-dark);
+    display: block;
   }
 
+  .main-nav > a::after,
+  .main-nav > .nav-dropdown > a::after {
+    display: none;
+  }
+
+  .main-nav > .nav-dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Mobile dropdown — expands inline */
   .nav-dropdown .dropdown-menu {
     position: static;
     transform: none;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.03);
     border: none;
+    border-radius: 0;
     box-shadow: none;
     opacity: 1;
     visibility: visible;
     padding: 0;
     min-width: auto;
     display: none;
+    transition: none;
   }
 
   .nav-dropdown.open .dropdown-menu {
     display: block;
   }
 
+  /* Override desktop :hover rule (higher specificity) that leaks
+     transform: translateX(-50%) into mobile, shifting dropdown left */
+  .nav-dropdown:hover .dropdown-menu,
+  .nav-dropdown.open .dropdown-menu {
+    transform: none;
+  }
+
   .dropdown-menu a {
     text-align: center;
-    padding: var(--space-xs) 0;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .dropdown-menu a:last-child {
+    border-bottom: 1px solid var(--border-dark);
   }
 
   .menu-toggle {
     display: block;
+    z-index: 10001;
   }
 
   .header-cta,
@@ -1309,6 +1456,16 @@ select.form-control {
   .page-hero { min-height: 40vh; }
 
   .hero-content h1 { font-size: 2.5rem; }
+
+  .scroll-cue {
+    bottom: 18px;
+    padding: 11px 14px 10px;
+  }
+
+  .scroll-cue__label {
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+  }
 
   .footer-bottom {
     flex-direction: column;
@@ -1344,4 +1501,50 @@ select.form-control {
 .w-full { width: 100%; }
 .relative { position: relative; }
 .overflow-hidden { overflow: hidden; }
+
+/* ═══ BODY TEXT REFINEMENTS ═══ */
+.chess-content p,
+.step-content p,
+.section-subtitle {
+  letter-spacing: 0.01em;
+}
+
+/* ═══ CHECK-LIST DETAILED (compact: checkmark + title inline, description below) ═══ */
+.check-list-detailed li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-dark);
+  line-height: 1.5;
+}
+.check-list-detailed li:last-child {
+  border-bottom: none;
+}
+.check-list-detailed li::before {
+  grid-row: 1;
+  grid-column: 1;
+  margin-top: 1px;
+}
+.check-list-detailed li strong {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 1rem;
+  color: var(--text-white);
+}
+.check-list-detailed li span {
+  grid-column: 2;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ═══ CARD ICON CENTERING (additional services) ═══ */
+.card-body > svg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* (card transitions consolidated into main .card rule above) */
 
