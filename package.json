@@ -1,0 +1,21 @@
+{
+  "name": "westside-website-v2",
+  "private": true,
+  "description": "Westside Professional Landscape — website v2",
+  "scripts": {
+    "dev": "bash dev.sh",
+    "start": "browser-sync start --config bs-config.js",
+    "serve": "browser-sync start --config bs-config.js",
+    "serve:http": "browser-sync start --config bs-config.js --no-https",
+    "lint:html": "html-validate \"*.html\"",
+    "lint:css": "stylelint \"css/**/*.css\"",
+    "lint:js": "eslint \"js/**/*.js\"",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "format": "prettier --write \"*.html\" \"css/**/*.css\" \"js/**/*.js\"",
+    "format:check": "prettier --check \"*.html\" \"css/**/*.css\" \"js/**/*.js\"",
+    "audit:a11y": "pa11y https://localhost:3000",
+    "audit:lighthouse": "lighthouse https://localhost:3000 --output=html --output-path=./temp-lighthouse.html --chrome-flags=\"--ignore-certificate-errors\"",
+    "audit:links": "linkinator https://localhost:3000 --recurse",
+    "tunnel": "cloudflared tunnel --url https://localhost:3000"
+  }
+}
